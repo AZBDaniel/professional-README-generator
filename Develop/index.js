@@ -23,6 +23,7 @@ const test = [{
     default:'npm run test'
 }]
 
+
 // TODO: Create an array of questions for user input
 const promptInfo = () => {
     return inquirer.prompt([
@@ -47,6 +48,42 @@ const promptInfo = () => {
                     return true;
                 } else {
                     console.log('Please enter a breif description about your projet!');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'userName',
+            message: 'Enter your First Name (Required) Last Name (Optional)',
+            validate: userNameInput => {
+                if (userNameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter at least your first "Name"!');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'userGitHub',
+            message: 'Enter your GitHub Username! (Required)',
+            validate: userGitHubInput => {
+                if (userGitHubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your "Git Hub Username"');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'userEmail',
+            message: 'Enter a Email Address you will except additional questions at! (Required)',
+            validate: userEmailInput => {
+                if (userEmailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter email address, so users can contact you with questions!');
                     return false;
                 }
             }
@@ -114,7 +151,7 @@ const promptInfo = () => {
             type: 'confirm',
             name: 'confirmTests',
             message: 'Does your project include any Tests? If yes enter description on how to test project.',
-            default: true
+            default: false
         }
     ]);
 };
@@ -147,6 +184,7 @@ function init() {
             if (userInfo.confirmTests) {
                 userInfo.test=inquirer.prompt(test);
             }
+            
         }).then(()=>{
             console.log(userInfo);
             writeToFile('newReadMe.md',generateMarkdown(userInfo))
