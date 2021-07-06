@@ -23,7 +23,6 @@ const test = [{
     default:'npm run test'
 }]
 
-
 // TODO: Create an array of questions for user input
 const promptInfo = () => {
     return inquirer.prompt([
@@ -65,10 +64,10 @@ const promptInfo = () => {
             }
         }, {
             type: 'input',
-            name: 'userGitHub',
+            name: 'userGitHubName',
             message: 'Enter your GitHub Username! (Required)',
-            validate: userGitHubInput => {
-                if (userGitHubInput) {
+            validate: userGitHubNameInput => {
+                if (userGitHubNameInput) {
                     return true;
                 } else {
                     console.log('Please enter your "Git Hub Username"');
@@ -83,7 +82,7 @@ const promptInfo = () => {
                 if (userEmailInput) {
                     return true;
                 } else {
-                    console.log('Please enter email address, so users can contact you with questions!');
+                    console.log('Please enter email address, so users can contact you with!');
                     return false;
                 }
             }
@@ -151,7 +150,7 @@ const promptInfo = () => {
             type: 'confirm',
             name: 'confirmTests',
             message: 'Does your project include any Tests? If yes enter description on how to test project.',
-            default: false
+            default: true
         }
     ]);
 };
@@ -184,7 +183,6 @@ function init() {
             if (userInfo.confirmTests) {
                 userInfo.test=inquirer.prompt(test);
             }
-            
         }).then(()=>{
             console.log(userInfo);
             writeToFile('newReadMe.md',generateMarkdown(userInfo))

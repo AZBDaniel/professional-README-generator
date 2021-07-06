@@ -1,6 +1,12 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(data) {
+  // https://img.shields.io/static/v1.svg?label=License&message=APACHE&color=Green
+  // https://img.shields.io/static/v1.svg?label=License&message=MIT&color=Orange
+  // https://img.shields.io/static/v1.svg?label=License&message=GPL&color=Blue
+  // https://img.shields.io/static/v1.svg?label=License&message=BSD&color=Red
+  // https://img.shields.io/static/v1.svg?label=License&message=NONE&color=Black
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -63,7 +69,6 @@ ${data.confirmTests}
 - Created By: ${data.userName}
 - GitHub Account ${data.userGitHub}
 - Email Address ${data.userEmail}
-
 
 `;
 }
