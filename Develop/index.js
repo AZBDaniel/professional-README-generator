@@ -2,7 +2,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
-const installationQuestion = [{
+
+const installation = [{
     type: 'input',
     name: 'installation',
     message: 'How do users install your application?',
@@ -79,18 +80,6 @@ const promptInfo = () => {
                 }
             }
         }, {
-            type: 'input',
-            name: 'projectDescription',
-            message: 'Enter a description about your project? (Required)',
-            validate: projectTitleInput => {
-                if (projectTitleInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a breif description about your projet!');
-                    return false;
-                }
-            }
-        }, {
             type: 'checkbox',
             name: 'projectLanguages',
             message: 'What coding "Langauges" did you use for this project? (Check all that apply)',
@@ -144,29 +133,21 @@ function init() {
     promptInfo()
         .then((userRespawns) => {
             userInfo = userRespawns
-            console.log(userInfo);
+
             if (userInfo.confirmInstallation) {
-                return inquirer.prompt(installationQuestion)
-            } else {
-                return
+                userInfo.installation=inquirer.prompt(installation);
             }
 
-        }).then((userInstall) => {
-            userInfo.installation=userInstall.installation
+        }).then(() => {
             if (userInfo.confirmContributing) {
-                return inquirer.prompt(contributor)
-            } else {
-                return
+                userInfo.contributors=inquirer.prompt(contributor);
             }
-        }).then((userContributors) => {
-            userInfo.contributors=userContributors.contributors
+
+        }).then(() => {
             if (userInfo.confirmTests) {
-                return inquirer.prompt(test)
-            } else {
-                return
+                userInfo.test=inquirer.prompt(test);
             }
-        }).then((userTest)=>{
-            userInfo.test=userTest.test
+        }).then(()=>{
             console.log(userInfo);
             writeToFile('newReadMe.md',generateMarkdown(userInfo))
         })
