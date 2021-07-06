@@ -1,5 +1,26 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
+const installationQuestion = [{
+    type: 'input',
+    name: 'installation',
+    message: 'How do users install your application?',
+    default: 'npm i'
+}]
+
+const contributor = [{
+    type: 'input',
+    name: 'contributors',
+    message: 'Who are the contributors?'
+}]
+
+const test = [{
+    type: 'input',
+    name: 'test',
+    message: 'How to run test?',
+    default:'npm run test'
+}]
 
 // TODO: Create an array of questions for user input
 const promptInfo = () => {
@@ -111,14 +132,48 @@ const promptInfo = () => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeToFile(fileName, data, err => {
+    fs.writeFile(fileName, data, err => {
         if (err) throw err;
         console.log('New README has been Generated!')
     })
- }
+}
 
 // TODO: Create a function to initialize app
-function init() { }
+function init() {
+    let userInfo
+    promptInfo()
+        .then((userRespawns) => {
+            userInfo = userRespawns
+            console.log(userInfo);
+            if (userInfo.confirmInstallation) {
+                return inquirer.prompt(installationQuestion)
+            } else {
+                return
+            }
+
+        }).then((userInstall) => {
+            userInfo.installation=userInstall.installation
+            if (userInfo.confirmContributing) {
+                return inquirer.prompt(contributor)
+            } else {
+                return
+            }
+        }).then((userContributors) => {
+            userInfo.contributors=userContributors.contributors
+            if (userInfo.confirmTests) {
+                return inquirer.prompt(test)
+            } else {
+                return
+            }
+        }).then((userTest)=>{
+            userInfo.test=userTest.test
+            console.log(userInfo);
+            writeToFile('newReadMe.md',generateMarkdown(userInfo))
+        })
+
+        
+}
+
 
 // Function call to initialize app
-promptInfo();
+init();
