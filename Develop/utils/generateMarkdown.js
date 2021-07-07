@@ -1,6 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(data) {
+
   // https://img.shields.io/static/v1.svg?label=License&message=APACHE&color=Green
   // https://img.shields.io/static/v1.svg?label=License&message=MIT&color=Orange
   // https://img.shields.io/static/v1.svg?label=License&message=GPL&color=Blue
@@ -27,17 +28,17 @@ ${data.projectDescription}
 
 ## Table of Contents
 
--Installation
--Usage
--Screenshot
--Languages
--License
--Credits
--Tests
--Questions
+- [Installation](#installation)
+- [Usage]
+- Screenshot
+- Languages
+- License
+- Credits
+- Tests
+- [Questions](#questions)
 
 ## Installation
-${data.confirmInstallation}
+${data.installation}
 
 
 ## Usage
@@ -49,7 +50,7 @@ ${data.projectScreenshot}
 
 
 ## Langauges
-${data.projectLangauges}
+${data.projectLanguages}
 
 
 ## License
@@ -57,17 +58,17 @@ ${data.projectLicense}
 
 
 ## Credits
-${data.confirmContributing}
+${data.contributors}
 
 
 ## Tests
-${data.confirmTests}
+${data.test}
 
 
 ## Questions
 
 - Created By: ${data.userName}
-- GitHub Account ${data.userGitHub}
+- GitHub Account ${data.userGitHubName}
 - Email Address ${data.userEmail}
 
 `;

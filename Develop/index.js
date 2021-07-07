@@ -167,21 +167,24 @@ function writeToFile(fileName, data) {
 function init() {
     let userInfo
     promptInfo()
-        .then((userRespawns) => {
+        .then(async (userRespawns) => {
             userInfo = userRespawns
 
             if (userInfo.confirmInstallation) {
-                userInfo.installation=inquirer.prompt(installation);
+                const answer = await inquirer.prompt(installation);
+                userInfo.installation = answer.installation;
             }
-
-        }).then(() => {
+        
+        }).then(async () => {
             if (userInfo.confirmContributing) {
-                userInfo.contributors=inquirer.prompt(contributor);
+                const answer = await inquirer.prompt(contributor);
+                userInfo.contributors = answer.contributors
             }
 
-        }).then(() => {
+        }).then(async () => {
             if (userInfo.confirmTests) {
-                userInfo.test=inquirer.prompt(test);
+                const answer = await inquirer.prompt(test);
+                userInfo.test = answer.test
             }
         }).then(()=>{
             console.log(userInfo);
