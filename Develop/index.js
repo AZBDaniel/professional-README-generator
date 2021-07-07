@@ -2,7 +2,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
-const installationQuestion = [{
+
+const installation = [{
     type: 'input',
     name: 'installation',
     message: 'How do users install your application?',
@@ -50,6 +51,42 @@ const promptInfo = () => {
                 }
             }
         }, {
+            type: 'input',
+            name: 'userName',
+            message: 'Enter your First Name (Required) Last Name (Optional)',
+            validate: userNameInput => {
+                if (userNameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter at least your first "Name"!');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'userGitHubName',
+            message: 'Enter your GitHub Username! (Required)',
+            validate: userGitHubNameInput => {
+                if (userGitHubNameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your "Git Hub Username"');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'userEmail',
+            message: 'Enter a Email Address you will except additional questions at! (Required)',
+            validate: userEmailInput => {
+                if (userEmailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter email address, so users can contact you with!');
+                    return false;
+                }
+            }
+        }, {
             type: 'confirm',
             name: 'confirmInstallation',
             message: 'Does your project require any additonal "Installation" instructions?',
@@ -79,18 +116,6 @@ const promptInfo = () => {
                 }
             }
         }, {
-            type: 'input',
-            name: 'projectDescription',
-            message: 'Enter a description about your project? (Required)',
-            validate: projectTitleInput => {
-                if (projectTitleInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a breif description about your projet!');
-                    return false;
-                }
-            }
-        }, {
             type: 'checkbox',
             name: 'projectLanguages',
             message: 'What coding "Langauges" did you use for this project? (Check all that apply)',
@@ -101,8 +126,7 @@ const promptInfo = () => {
                 "jQuery",
                 "Bootstrap",
                 "Nodejs",
-                "ES6",
-                "Other",
+                "ES6"
             ],
         }, {
             type: 'checkbox',
@@ -113,7 +137,6 @@ const promptInfo = () => {
                 "APACHE",
                 "GPL",
                 "BSD",
-                "None",
             ],
         }, {
             type: 'confirm',
@@ -142,31 +165,26 @@ function writeToFile(fileName, data) {
 function init() {
     let userInfo
     promptInfo()
-        .then((userRespawns) => {
+        .then(async (userRespawns) => {
             userInfo = userRespawns
-            console.log(userInfo);
+
             if (userInfo.confirmInstallation) {
-                return inquirer.prompt(installationQuestion)
-            } else {
-                return
+                const answer = await inquirer.prompt(installation);
+                userInfo.installation = answer.installation;
+            }
+        
+        }).then(async () => {
+            if (userInfo.confirmContributing) {
+                const answer = await inquirer.prompt(contributor);
+                userInfo.contributors = answer.contributors
             }
 
-        }).then((userInstall) => {
-            userInfo.installation=userInstall.installation
-            if (userInfo.confirmContributing) {
-                return inquirer.prompt(contributor)
-            } else {
-                return
-            }
-        }).then((userContributors) => {
-            userInfo.contributors=userContributors.contributors
+        }).then(async () => {
             if (userInfo.confirmTests) {
-                return inquirer.prompt(test)
-            } else {
-                return
+                const answer = await inquirer.prompt(test);
+                userInfo.test = answer.test
             }
-        }).then((userTest)=>{
-            userInfo.test=userTest.test
+        }).then(()=>{
             console.log(userInfo);
             writeToFile('newReadMe.md',generateMarkdown(userInfo))
         })

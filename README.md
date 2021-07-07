@@ -1,24 +1,49 @@
-# Professional README Generator
+# README Generator
 
-## U of A Boot Camp Challenge 9
+![MIT](https://img.shields.io/static/v1.svg?label=License&message=MIT&color=Orange)
 
-## User Story
-
-A Node.js command line prompt, README generator
-
-###Status
-
-Project currently incomplete, having troubles gitting it to work. Still trying to complete and improve.
-
-# Screenshots
+## Description
+A node.js inqiuer application, that is used to generate README from the command line
 
 
+## Table of Contents
 
-# Built With
-    JAVASCRIPT
-    
+- [Usage](#usage)
+- [Installation](#installation)
+- [Walkthrough](#walkthrough)
+- [Languages](#languages)
+- [Tests](#tests)
+- [License](#license)
+- [Credits](#credits)
+- [Questions](#questions)
 
-##  Created by:
+## Usage
+Download Zip the REPO, then go to NPM and learn how to install inquier. At this point nav in command prompt to file location and run node
 
-    Bryan Daniel
+## Installation
+npm i
 
+## Walkthrough or Screenshot
+[Walkthrough](https://www.youtube.com/watch?v=FRFy1yI7-zc)
+
+## Langauges
+Javascript
+
+## Tests
+npm run test
+
+## License
+[MIT License](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2021
+
+## Credits
+Jeremy Lentz, GitHub: [jlentz17](https://github.com/jlentz17)
+
+University of Arizona Ta,s and Tutors
+
+## Questions
+
+- Created By: Bryan Daniel
+- GitHub [AZBDaniel](https://github.com/AZBDaniel)
+- Email Address BRDaniel117@gmail.com
