@@ -24,7 +24,7 @@ Download Zip the REPO, then go to NPM and learn how to install inquier. At this 
 npm i
 
 ## Walkthrough or Screenshot
-None
+[Walkthrough](https://www.youtube.com/watch?v=FRFy1yI7-zc)
 
 ## Langauges
 Javascript
@@ -38,10 +38,12 @@ npm run test
 Copyright (c) 2021
 
 ## Credits
-Jeremy Lentz, University of Arizona Ta,s and Tutors
+Jeremy Lentz, GitHub: [jlentz17](https://github.com/jlentz17)
+
+University of Arizona Ta,s and Tutors
 
 ## Questions
 
 - Created By: Bryan Daniel
-- GitHub Account AZBDaniel
+- GitHub [AZBDaniel](https://github.com/AZBDaniel)
 - Email Address BRDaniel117@gmail.com
