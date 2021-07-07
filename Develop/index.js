@@ -126,8 +126,7 @@ const promptInfo = () => {
                 "jQuery",
                 "Bootstrap",
                 "Nodejs",
-                "ES6",
-                "Other",
+                "ES6"
             ],
         }, {
             type: 'checkbox',
@@ -138,7 +137,6 @@ const promptInfo = () => {
                 "APACHE",
                 "GPL",
                 "BSD",
-                "None",
             ],
         }, {
             type: 'confirm',
