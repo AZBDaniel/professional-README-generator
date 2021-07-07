@@ -64,52 +64,43 @@ ${data.projectDescription}
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Usage](#usage)
-- [Screenshot](#screenshot)
-- [Languages](#languages)
+- [Installation](#installation)
+- [Walkthrough](#walkthrough)
+- [Languages](#langauges)
+- [Tests](#tests)
 - [License](#license)
 - [Credits](#credits)
-- [Tests](#tests)
 - [Questions](#questions)
-
-## Installation
-${data.installation}
-
 
 ## Usage
 ${data.projectUsage}
 
+## Installation
+${data.installation}
 
-## Screenshot
+## Walkthrough or Screenshot
 ${data.projectScreenshot}
-
 
 ## Langauges
 ${data.projectLanguages}
 
+## Tests
+${data.test}
 
 ## License
-
 ${renderLicenseLink(data.projectLicense)}
 
 ${renderLicenseSection(data.projectLicense)}
 
-
 ## Credits
 ${data.contributors}
-
-
-## Tests
-${data.test}
-
 
 ## Questions
 
 - Created By: ${data.userName}
 - GitHub Account ${data.userGitHubName}
 - Email Address ${data.userEmail}
-
 `;
 }
 
